@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
+import { CgMenu, CgClose } from "react-icons/cg";
 
 const Navbar = () => {
   return (
+    <div>
     <ul className="flex gap-5 font-semibold">
       <Link to={"/"}>
         <li>Home</li>
@@ -24,6 +26,12 @@ const Navbar = () => {
         </span>
       </Link>
     </ul>
+
+    <div>
+      <CgMenu />
+      <CgClose />
+    </div>
+    </div>
   );
 };
 
