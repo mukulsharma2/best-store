@@ -7,10 +7,14 @@ import Contact from "./components/Contact";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
+import Header from "./components/Header";
 
 function App() {
   return (
+    <div className="font-sans">
+
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/about" element={<About/>} />
@@ -21,6 +25,7 @@ function App() {
         <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
