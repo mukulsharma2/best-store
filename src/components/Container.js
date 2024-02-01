@@ -4,8 +4,9 @@ import shopping from '../images/shopping.jpg'
 
 const Container = ({name}) => {
   return (
-    <div className='max-w-screen-xl mx-auto grid gap-36 grid-cols-2'>
-      <div className="">
+    <div className='max-w-screen-lg mx-auto flex justify-between'>
+    {/* <div className='max-w-screen-xl mx-auto grid gap-36 grid-cols-2'> */}
+      <div className="w-1/2">
         <p className='uppercase font-medium text-lg'>Welcome To</p>
         <h1 className='-ml-1 my-3 text-5xl font-semibold'>{name}</h1>
         <p>
@@ -16,8 +17,8 @@ const Container = ({name}) => {
         </Link>
       </div>
 
-     <div className="">
-        <img src={shopping} alt="family shopping" />
+     <div className="bg-[#6254F3] w-72 h-48 relative">
+        <img src={shopping} alt="family shopping" className='absolute top-1/4 right-[18%] w-full h-full z-10' />
      </div>
     </div>
   )
