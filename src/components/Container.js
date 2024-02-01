@@ -5,7 +5,6 @@ import shopping from '../images/shopping.jpg'
 const Container = ({name}) => {
   return (
     <div className='max-w-screen-lg mx-auto flex justify-between'>
-    {/* <div className='max-w-screen-xl mx-auto grid gap-36 grid-cols-2'> */}
       <div className="w-1/2">
         <p className='uppercase font-medium text-lg'>Welcome To</p>
         <h1 className='-ml-1 my-3 text-5xl font-semibold'>{name}</h1>
