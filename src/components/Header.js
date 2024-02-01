@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 
 const Header = () => {
   return (
-    <div className='h-14 bg-slate-400 flex justify-between items-center'>
+    <div className='w-screen h-screen sm:h-14 bg-slate-400 flex flex-col sm:flex-row sm:justify-between items-center'>
             <Link className="flex items-center">
                 <img src={logo} alt="best cart logo" className='w-12 h-12 ml-2' />
                 <span className='ml-2 font-extrabold text-2xl'>BEST STORE</span>

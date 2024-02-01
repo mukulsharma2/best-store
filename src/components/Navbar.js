@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 
 const Navbar = () => {
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div>
-    <ul className="flex gap-5 font-semibold">
+    <ul className={"flex flex-col sm:flex-row gap-5 font-semibold text-2xl sm:text-base" + (!isMenuOpen && " hidden sm:flex")}>
       <Link to={"/"}>
         <li>Home</li>
       </Link>
@@ -27,9 +29,13 @@ const Navbar = () => {
       </Link>
     </ul>
 
-    <div>
-      <CgMenu />
-      <CgClose />
+    <div className="w-fit absolute right-4 top-4">
+      {
+      !isMenuOpen && <CgMenu size='2rem' className="cursor-pointer sm:hidden" onClick={()=> setIsMenuOpen(!isMenuOpen)} />
+      }
+      {
+      isMenuOpen && <CgClose size='2rem' className="cursor-pointer sm:hidden" onClick={()=> setIsMenuOpen(!isMenuOpen)} />
+      }
     </div>
     </div>
   );
