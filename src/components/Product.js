@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Product = (currEle) => {
-  const {id, name, price, image} = currEle
+  const {id, name, price, image, category} = currEle
 
   return (
-      <Link to={`/singleproduct/:${id}`} className='w-fit m-auto'>
-          <div className="bg-white w-fit rounded-2xl p-5">
-            <img src={image} alt={name} className='w-64 rounded-2xl' />
-
-            <div className="ml-1">
-                <h3 className="my-1 font-medium text-lg">{name}</h3>
+      <Link to={`/singleproduct/:${id}`} className='w-fit m-auto hover:shadow-xl hover:z-10'>
+          <div className="bg-white w-fit rounded-2xl p-5 relative">
+            <img src={image} alt={name} className='w-64 hover:w-[17rem] rounded-2xl' />
+            <span className='absolute top-8 right-8 bg-white rounded-lg uppercase text-sm px-1'>{category}</span>
+            <div className="m-1 mt-3 flex justify-between">
+                <h3 className="font-medium text-lg">{name}</h3>
                 <p>{price}</p>
             </div>
           </div>

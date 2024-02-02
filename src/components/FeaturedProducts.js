@@ -20,9 +20,9 @@ if(isLoading === true) return <div>Loading...</div>
 
   return (<>
     <div className="border-t-2 mt-20 border-slate-500 w-1/3 mx-auto"></div>
-      <div className="bg-slate-100 mt-20 px-5 pb-12 pt-7">
+      <div className="bg-slate-100 mt-20 px-5 pb-12 pt-7 h-96">
         <div className="mb-5 mx-auto w-fit text-3xl font-semibold">Our Featured Products</div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 h-72">
           {
            featuredData && featuredData.map((curElem) => {
             return <Product key={curElem.id} {...curElem} />;
