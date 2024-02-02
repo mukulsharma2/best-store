@@ -8,23 +8,24 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="font-sans">
-
-    <BrowserRouter>
-    <Header/>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/products" element={<Products/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/singleproduct/:id" element={<SingleProduct/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="*" element={<ErrorPage/>} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/singleproduct/:id" element={<SingleProduct />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
