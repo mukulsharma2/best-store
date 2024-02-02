@@ -12,13 +12,16 @@ const dispatch = useDispatch()
 useEffect(()=>{
   async function fetchData () {
     dispatch(setLoadingTrue())
-
-    const data = await fetch("https://api.pujakaitem.com/api/products")
-    const json = await data.json()
-    dispatch(addData(json))
-    
+    try {
+      const data = await fetch("https://api.pujakaitem.com/api/products")
+      const json = await data.json()
+      dispatch(addData(json))
+    } catch (error) {
+      console.log(error);
+    }
     dispatch(setLoadingFalse())
   }
+  
   fetchData()
 })
 
