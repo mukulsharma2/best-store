@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import Product from './Product'
 
 const FeaturedProducts = () => {
-const data = useSelector((store)=> store.app.data)
-console.log(data);
+    const [featuredData, setFeaturedData] = useState([])
+    const data = useSelector((store)=> store.app.data)
+    const isLoading = useSelector((store)=> store.app.isLoading)
+    console.log(data);
+    console.log(featuredData);
+    
+    useEffect(()=>{
+        const filteredData = data.filter((curElem) => {
+            return curElem.featured === true;
+        });
+        setFeaturedData(filteredData)
+    }, [data])
 
-  return (
-    <div>
-      <div className="">
-        <div className="">Check Now!</div>
-        <div className="">Our Feature Services</div>
+if(isLoading === true) return <div>Loading...</div>
+
+  return (<>
+    <div className="border-t-2 mt-20 border-slate-500 w-1/3 mx-auto"></div>
+      <div className="bg-slate-100 mt-20 px-5 pb-12 pt-7">
+        <div className="mb-5 mx-auto w-fit text-3xl font-semibold">Our Featured Products</div>
         <div className="grid grid-cols-3">
-          {/* {featuredProducts.map((curElem) => { */}
-            {/* // return <Product key={curElem.id} {...curElem} />; */}
-        {/* //   })} */}
+          {
+           featuredData && featuredData.map((curElem) => {
+            return <Product key={curElem.id} {...curElem} />;
+            })
+           }
         </div>
-      </div>
-    </div>
+      </div></>
   )
 }
 
