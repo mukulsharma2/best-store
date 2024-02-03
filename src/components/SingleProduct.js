@@ -11,6 +11,7 @@ import Images from "./Images";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import Stars from "./Stars";
+import AddToCart from "./AddToCart";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -120,8 +121,8 @@ const SingleProduct = () => {
                 Brand :<span> {company} </span>
               </p>
             </div>
-            <hr />
-            {/* {stock > 0 && <AddToCart product={singleData} />} */}
+            <hr className="bg-black h-[3px] my-4"/>
+            {stock > 0 && <AddToCart product={singleData} />}
 
         </div>
       </div>
