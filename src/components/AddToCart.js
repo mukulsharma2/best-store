@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
-import { FaCheck } from "react-icons/fa";
-// import CartAmountToggle from "./CartAmountToggle";
+import { FaCheck, FaMinus, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const AddToCart = ({product}) => {
     const {id, colors,stock} = product
 
     const [color, setColor] = useState(colors[0]);
-    const [amount, setAmount] = useState(1);
-  
+    const [quantity, setQuantity] = useState(1);
+
     const setDecrease = () => {
-      amount > 1 ? setAmount(amount - 1) : setAmount(1);
+      quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
     };
   
     const setIncrease = () => {
-      amount < stock ? setAmount(amount + 1) : setAmount(stock);
+      quantity < stock ? setQuantity(quantity + 1) : setQuantity(stock);
     };
-  
+
     return (
         <div className="">
           <div className='flex gap-1'>
@@ -34,16 +33,20 @@ const AddToCart = ({product}) => {
             })}
           </div>
   
-        {/* add to cart  */}
-        {/* <CartAmountToggle
-          amount={amount}
-          setDecrease={setDecrease}
-          setIncrease={setIncrease}
-        />
+        <div className="flex gap-4">
+          <button onClick={() => setDecrease()}>
+            <FaMinus />
+          </button>
+          <div className="">{quantity}</div>
+          <button onClick={() => setIncrease()}>
+            <FaPlus />
+          </button>
+      </div>
   
-        <Link to="/cart" onClick={() => addToCart(id, color, amount, product)}>
-          <button className="">Add To Cart</button>
-        </Link> */}
+        <Link to="/cart">
+        {/* <Link to="/cart" onClick={() => addToCart(id, color, amount, product)}> */}
+          <button className="bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white">Add To Cart</button>
+        </Link>
         </div>
     );
 }
