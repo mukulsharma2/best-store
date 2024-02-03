@@ -16,7 +16,7 @@ const FeaturedProducts = () => {
         setFeaturedData(filteredData)
     }, [data])
 
-if(isLoading === true) return <div>Loading...</div>
+if(isLoading) return <div>Loading...</div>
 
   return (<>
     <div className="border-t-2 mt-20 border-slate-500 w-1/3 mx-auto"></div>

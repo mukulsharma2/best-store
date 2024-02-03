@@ -5,6 +5,7 @@ import Trusted from './Trusted'
 import FeaturedProducts from './FeaturedProducts'
 import { useDispatch } from 'react-redux'
 import { addData, setLoadingTrue, setLoadingFalse } from '../store/appSlice'
+import { API } from '../helper/constants'
 
 const Home = () => {
 const dispatch = useDispatch()
@@ -13,7 +14,7 @@ useEffect(()=>{
   async function fetchData () {
     dispatch(setLoadingTrue())
     try {
-      const data = await fetch("https://api.pujakaitem.com/api/products")
+      const data = await fetch(API)
       const json = await data.json()
       dispatch(addData(json))
     } catch (error) {
