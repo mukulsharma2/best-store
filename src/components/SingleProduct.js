@@ -10,6 +10,7 @@ import { SINGLE_PRODUCT_API } from "../helper/constants";
 import Images from "./Images";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import Stars from "./Stars";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -66,14 +67,14 @@ const SingleProduct = () => {
         /{name}
       </div>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-20 mx-auto w-4/5">
         {/* Images */}
-        <Images image={image} />
+        {image && <Images images={image} />}
 
         {/* Product Data */}
         <div>
           <h2 className="text-3xl font-semibold mb-2">{name}</h2>
-          <p>{stars}</p>
+        {stars && <Stars stars={stars} reviews={reviews} />}
 
           <p className="">
               MRP:
@@ -85,8 +86,8 @@ const SingleProduct = () => {
               Deal of the Day: {formatedPrice(price)}
             </p>
             <p>{description}</p>
-            <div className="flex gap-5">
-              <div className="flex flex-col place-items-center my-2">
+            <div className="flex gap-5 my-2">
+              <div className="flex flex-col place-items-center">
                 <TbTruckDelivery className="bg-slate-100 p-2 rounded-xl" size='3rem' />
                 <p>Free Delivery</p>
               </div>
