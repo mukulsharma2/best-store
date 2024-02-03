@@ -72,7 +72,7 @@ const SingleProduct = () => {
 
         {/* Product Data */}
         <div>
-          <h2>{name}</h2>
+          <h2 className="text-3xl font-semibold mb-2">{name}</h2>
           <p>{stars}</p>
 
           <p className="">
@@ -85,24 +85,24 @@ const SingleProduct = () => {
               Deal of the Day: {formatedPrice(price)}
             </p>
             <p>{description}</p>
-            <div className="">
-              <div className="">
-                <TbTruckDelivery className="" />
+            <div className="flex gap-5">
+              <div className="flex flex-col place-items-center my-2">
+                <TbTruckDelivery className="bg-slate-100 p-2 rounded-xl" size='3rem' />
                 <p>Free Delivery</p>
               </div>
 
-              <div className="">
-                <TbReplace className="" />
+              <div className="flex flex-col place-items-center">
+                <TbReplace className="bg-slate-100 p-2 rounded-xl" size='3rem' />
                 <p>30 Days Replacement</p>
               </div>
 
-              <div className="">
-                <TbTruckDelivery className="" />
+              <div className="flex flex-col place-items-center">
+                <TbTruckDelivery className="bg-slate-100 p-2 rounded-xl" size='3rem' />
                 <p>Delivered By Best Store</p>
               </div>
 
-              <div className="">
-                <MdSecurity className="" />
+              <div className="flex flex-col place-items-center">
+                <MdSecurity className="bg-slate-100 p-2 rounded-xl" size='3rem' />
                 <p>2 Year Warranty </p>
               </div>
             </div>
