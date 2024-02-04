@@ -25,7 +25,7 @@ if(isLoading) return <div>Loading...</div>
         <div className="grid grid-cols-3 h-72">
           {
            featuredData && featuredData.map((curElem) => {
-            return <Product key={curElem.id} {...curElem} />;
+            return <Product key={curElem.id} data={curElem} hoverEffect={true} />;
             })
            }
         </div>
