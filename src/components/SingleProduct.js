@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -6,7 +6,7 @@ import {
   setSingleLoadingFalse,
   addSingleData,
 } from "../store/appSlice";
-import { SINGLE_PRODUCT_API } from "../helper/constants";
+import { SINGLE_PRODUCT_API, formatPrice } from "../helper/constants";
 import Images from "./Images";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
@@ -34,15 +34,7 @@ const SingleProduct = () => {
     }
     a();
   }, [dispatch, id]);
-
-  const formatedPrice = (value) => {
-    return Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 2,
-      }).format(value / 100)
-  }
-
+  
   const {
     id: alias,
     name,
@@ -80,11 +72,11 @@ const SingleProduct = () => {
           <p className="">
               MRP:
               <del>
-              {formatedPrice(price + 250000)}
+              {formatPrice(price+250000)}
               </del>
             </p>
             <p className="">
-              Deal of the Day: {formatedPrice(price)}
+              Deal of the Day: {formatPrice(price)}
             </p>
             <p>{description}</p>
             <div className="flex gap-5 my-2">
@@ -123,7 +115,6 @@ const SingleProduct = () => {
             </div>
             <hr className="bg-black h-[3px] my-4"/>
             {stock > 0 && <AddToCart product={singleData} />}
-
         </div>
       </div>
     </div>

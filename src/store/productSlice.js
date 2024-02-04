@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const productSlice = createSlice({
     name: "product",
     initialState: {
-        isGridView: true,
+        showGridView: false,
     },
     reducers: {
 
