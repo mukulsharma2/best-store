@@ -5,11 +5,11 @@ import ListView from './ListView'
 
 const ProductList = () => {
   const showGridView = useSelector((store)=> store.product.showGridView)
-  const data = useSelector((store)=> store.app.data)
+  const sortedData = useSelector((store)=> store.product.sortedData)
 
   return (
     <div>
-      {showGridView? <GridView products={data} /> : <ListView products={data} />}
+      {showGridView? <GridView products={sortedData} /> : <ListView products={sortedData} />}
     </div>
   )
 }
