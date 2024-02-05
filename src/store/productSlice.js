@@ -54,11 +54,9 @@ const productSlice = createSlice({
         state.sortedData = state.sortedData.filter(curElem => curElem.company.toLowerCase() === company.toLowerCase());
       }
 
-    //   if (color !== "all") {
-    //     state.sortedData = state.sortedData.filter((curElem) =>
-    //       curElem.colors.includes(color)
-    //     );
-    //   }
+      if (color !== "all") {
+        state.sortedData = state.sortedData.filter(curElem => curElem.colors.includes(color));
+      }
 
     //   if (price === 0) {
     //     state.sortedData = state.sortedData.filter(

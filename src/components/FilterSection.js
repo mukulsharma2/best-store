@@ -13,11 +13,16 @@ const getParticularData = (data, property)=>{
 let particularData = data.map((currEle)=>{
   return currEle[property]
 })
-return (particularData = ['all', ...new Set(particularData)])
+if(property === 'colors'){
+  particularData =  particularData.flat()
+}
+
+  return (particularData = ['all', ...new Set(particularData)])
 }
 
 const categoryData = getParticularData(data, 'category')
 const companyData = getParticularData(data, 'company')
+const colorsData = getParticularData(data, 'colors')
 
   return (
     <div>
@@ -80,7 +85,7 @@ const companyData = getParticularData(data, 'company')
             }}>
             {companyData && companyData.map((curElem, index) => {
               return (
-                <option key={curElem} value={curElem} name="company">
+                <option key={index + 100} value={curElem} name="company">
                   {curElem}
                 </option>
               );
@@ -89,11 +94,11 @@ const companyData = getParticularData(data, 'company')
         </form>
       </div>
 
-    {/*  <div className="">
+      <div className="">
         <h3>Colors</h3>
 
         <div className="">
-          {colorsData.map((curColor, index) => {
+          {colorsData && colorsData.map((curColor, index) => {
             if (curColor === "all") {
               return (
                 <button
@@ -101,8 +106,14 @@ const companyData = getParticularData(data, 'company')
                   type="button"
                   value={curColor}
                   name="color"
-                  className=""
-                  onClick={updateFilterValue}>
+                  className="w-8 h-8"
+                  onClick={(e)=>{
+                    dispatch(filterProducts({
+                      name: e.target.name,
+                      value: e.target.value,
+                      fullData: data,
+                    }))
+                  }}>
                   all
                 </button>
               );
@@ -114,16 +125,22 @@ const companyData = getParticularData(data, 'company')
                 value={curColor}
                 name="color"
                 style={{ backgroundColor: curColor }}
-                className={color === curColor ? "btnStyle active" : "btnStyle"}
-                onClick={updateFilterValue}>
-                {color === curColor ? <FaCheck className="checkStyle" /> : null}
+                className={filters.color === curColor ? "w-8 h-8 btnStyle active" : "w-8 h-8 btnStyle"}
+                onClick={(e)=>{
+                  dispatch(filterProducts({
+                    name: e.target.name,
+                    value: e.target.value,
+                    fullData: data,
+                  }))
+                }}>
+                {filters.color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
             );
           })}
         </div>
       </div>
 
-      <div className="">
+     {/* <div className="">
         <h3>Price</h3>
         <p>
           {formatPrice(price)}
