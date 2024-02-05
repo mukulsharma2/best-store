@@ -7,8 +7,8 @@ const productSlice = createSlice({
         sortedData: [],
         filters: {
             text: "",
-            category: "",
-            company: "",
+            category: "all",
+            company: "all",
             color: "",
             price: 0,
         },
@@ -50,11 +50,9 @@ const productSlice = createSlice({
         state.sortedData = state.sortedData.filter(curElem => curElem.category === category);
       }
 
-    //   if (company !== "all") {
-    //     state.sortedData = state.sortedData.filter(
-    //       (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
-    //     );
-    //   }
+      if (company !== "all") {
+        state.sortedData = state.sortedData.filter(curElem => curElem.company.toLowerCase() === company.toLowerCase());
+      }
 
     //   if (color !== "all") {
     //     state.sortedData = state.sortedData.filter((curElem) =>

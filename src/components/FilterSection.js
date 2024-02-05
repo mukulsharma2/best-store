@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {formatPrice} from '../helper/constants'
 import { FaCheck } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,14 +13,11 @@ const getParticularData = (data, property)=>{
 let particularData = data.map((currEle)=>{
   return currEle[property]
 })
-return (particularData = ['All', ...new Set(particularData)])
+return (particularData = ['all', ...new Set(particularData)])
 }
 
 const categoryData = getParticularData(data, 'category')
-
-useEffect(()=>{
-  
-},[])
+const companyData = getParticularData(data, 'company')
 
   return (
     <div>
@@ -42,12 +39,12 @@ useEffect(()=>{
       </div>
 
        <div className="">
-        <h3>Category</h3>
-        <div>
-          {categoryData && categoryData.map((curElem, index) => {
+        <h3 className="font-semibold">Category</h3>
+        <div className="flex flex-col gap-3">
+          {categoryData && categoryData.map((curElem) => {
             return (
               <button
-                key={index}
+                key={curElem}
                 type="button"
                 name="category"
                 value={curElem}
@@ -66,18 +63,24 @@ useEffect(()=>{
         </div>
       </div>
 
-      {/* <div className="">
-        <h3>Company</h3>
+       <div className="">
+        <h3 className="font-semibold">Company</h3>
 
         <form action="#">
           <select
             name="company"
             id="company"
             className=""
-            onClick={updateFilterValue}>
-            {companyData.map((curElem, index) => {
+            onChange={(e)=>{
+              dispatch(filterProducts({
+                name: e.target.name,
+                value: e.target.value,
+                fullData: data,
+              }))
+            }}>
+            {companyData && companyData.map((curElem, index) => {
               return (
-                <option key={index} value={curElem} name="company">
+                <option key={curElem} value={curElem} name="company">
                   {curElem}
                 </option>
               );
@@ -86,7 +89,7 @@ useEffect(()=>{
         </form>
       </div>
 
-      <div className="">
+    {/*  <div className="">
         <h3>Colors</h3>
 
         <div className="">
