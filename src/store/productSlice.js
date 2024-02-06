@@ -9,7 +9,7 @@ const productSlice = createSlice({
             text: "",
             category: "all",
             company: "all",
-            color: "",
+            color: "all",
             price: 0,
         },
     },
@@ -58,40 +58,23 @@ const productSlice = createSlice({
         state.sortedData = state.sortedData.filter(curElem => curElem.colors.includes(color));
       }
 
-    //   if (price === 0) {
-    //     state.sortedData = state.sortedData.filter(
-    //       (curElem) => curElem.price == price
-    //     );
-    //   } else {
-    //     state.sortedData = state.sortedData.filter(
-    //       (curElem) => curElem.price <= price
-    //     );
-    //   }
-    //   return {
-    //     ...state,
-    //     filter_products: state.sortedData,
-    //   };
-
-    // case "CLEAR_FILTERS":
-    //   return {
-    //     ...state,
-    //     filters: {
-    //       ...state.filters,
-    //       text: "",
-    //       category: "all",
-    //       company: "all",
-    //       color: "all",
-    //       maxPrice: 0,
-    //       price: state.filters.maxPrice,
-    //       minPrice: state.filters.maxPrice,
-    //     },
-    //   };
-
-
-
+    
+        if (price) {
+            state.sortedData = state.sortedData.filter(curElem => curElem.price <= price);
+         }
         },
+    clearFilters: (state, action)=>{
+        state.sortedData = action.payload.fullData
+        state.filters =  {
+            text: "",
+            category: "all",
+            company: "all",
+            color: "all",
+            price: action.payload.maxPrice,
+        }
+    },
     },
 })
 
 export default productSlice.reducer
-export const {setGridView, setListView, setSortedData, sortProducts, filterProducts} =  productSlice.actions
+export const {setGridView, setListView, setSortedData, sortProducts, filterProducts, clearFilters} =  productSlice.actions

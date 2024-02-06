@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {formatPrice} from '../helper/constants'
 import { FaCheck } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { filterProducts } from '../store/productSlice';
+import { clearFilters, filterProducts } from '../store/productSlice';
 
 const FilterSection = () => {
   const dispatch = useDispatch()
@@ -16,6 +16,9 @@ let particularData = data.map((currEle)=>{
 if(property === 'colors'){
   particularData =  particularData.flat()
 }
+if(property === 'price'){
+  return particularData
+}
 
   return (particularData = ['all', ...new Set(particularData)])
 }
@@ -23,6 +26,18 @@ if(property === 'colors'){
 const categoryData = getParticularData(data, 'category')
 const companyData = getParticularData(data, 'company')
 const colorsData = getParticularData(data, 'colors')
+const priceData = getParticularData(data, 'price')
+
+const maxPrice = Math.max(...priceData)
+const minPrice = Math.min(...priceData)
+
+useEffect(()=>{
+  dispatch(filterProducts({
+    name: 'price',
+    value: maxPrice,
+    fullData: data,
+  }))
+},[dispatch, data, maxPrice])
 
   return (
     <div>
@@ -31,6 +46,7 @@ const colorsData = getParticularData(data, 'colors')
           <input
             type="text"
             name="text"
+            value={filters.text}
             placeholder="Search"
             onChange={(e)=>{
               dispatch(filterProducts({
@@ -106,7 +122,7 @@ const colorsData = getParticularData(data, 'colors')
                   type="button"
                   value={curColor}
                   name="color"
-                  className="w-8 h-8"
+                  className={'w-6 h-6' + (filters.color === curColor ? " text-blue-600 border-b" : "")}
                   onClick={(e)=>{
                     dispatch(filterProducts({
                       name: e.target.name,
@@ -125,7 +141,7 @@ const colorsData = getParticularData(data, 'colors')
                 value={curColor}
                 name="color"
                 style={{ backgroundColor: curColor }}
-                className={filters.color === curColor ? "w-8 h-8 btnStyle active" : "w-8 h-8 btnStyle"}
+                className={'hover:opacity-100 w-6 h-6 rounded-full border border-black' + (filters.color === curColor ? " opacity-100" : " opacity-50")}
                 onClick={(e)=>{
                   dispatch(filterProducts({
                     name: e.target.name,
@@ -140,26 +156,36 @@ const colorsData = getParticularData(data, 'colors')
         </div>
       </div>
 
-     {/* <div className="">
+      <div className="">
         <h3>Price</h3>
         <p>
-          {formatPrice(price)}
+          {formatPrice(minPrice) + ' to ' + formatPrice(filters.price)}
         </p>
         <input
           type="range"
           name="price"
           min={minPrice}
           max={maxPrice}
-          value={price}
-          onChange={updateFilterValue}
+          value={filters.price}
+          onChange={(e)=>{
+            dispatch(filterProducts({
+              name: e.target.name,
+              value: e.target.value,
+              fullData: data,
+            }))
+          }}
         />
       </div>
 
       <div className="">
-        <button className="" onClick={clearFilters}>
+        <button className="" onClick={()=> dispatch(clearFilters({
+        fullData: data,
+        maxPrice,
+        // maxPrice: maxPrice,
+        }))}>
           Clear Filters
         </button>
-      </div> */}
+      </div>
     </div>
   )
 }
