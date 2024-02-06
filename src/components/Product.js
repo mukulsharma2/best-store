@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
-const Product = (currEle) => {
-  const {id, name, price, image, category} = currEle
+const Product = ({data, hoverEffect}) => {
+  const {id, name, price, image, category} = data
 
 const formatedPrice = useMemo(() => {
   return Intl.NumberFormat("en-IN", {
@@ -13,9 +13,9 @@ const formatedPrice = useMemo(() => {
 }, [price])
 
   return (
-      <Link to={`/singleproduct/${id}`} className='w-fit m-auto hover:shadow-xl hover:z-10'>
-          <div className="bg-white w-fit rounded-2xl p-5 relative">
-            <img src={image} alt={name} className='w-64 hover:w-[17rem] rounded-2xl' />
+      <Link to={`/singleproduct/${id}`} className={'w-72 m-auto hover:shadow-xl hover:z-10' + (hoverEffect? ' hover:w-[19rem]' : '')}>
+          <div className="bg-white w-full rounded-2xl p-5 relative">
+            <img src={image} alt={name} className='w-full rounded-2xl' />
             <span className='absolute top-8 right-8 bg-white rounded-lg uppercase text-sm px-1'>{category}</span>
             <div className="m-1 mt-3 flex justify-between">
                 <h3 className="font-medium text-lg">{name}</h3>
