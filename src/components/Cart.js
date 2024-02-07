@@ -25,7 +25,7 @@ const Cart = () => {
         //   </div>
         // )} */}
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-5">
           <p>Item</p>
           <p className="">Price</p>
           <p>Quantity</p>
@@ -33,17 +33,17 @@ const Cart = () => {
           <p>Remove</p>
         </div>
         <hr />
-        <div className="">
+        <div className="flex flex-col gap-4">
           {cartItems && cartItems.map((curElem) => {
             return <CartItem key={curElem.id} productData={curElem} />;
           })}
         </div>
         <hr />
-        <div className="">
+        <div className="flex justify-between">
           <Link to="/products">
-            <button> continue Shopping </button>
+            <button className='bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white border border-black transition-all'> continue Shopping </button>
           </Link>
-          <button className="" onClick={()=> dispatch(clearCart())}>
+          <button className="bg-[#ec3535] px-5 py-2 font-semibold text-xl text-white border border-black transition-all" onClick={()=> dispatch(clearCart())}>
             clear cart
           </button>
         </div>

@@ -6,7 +6,7 @@ import { removeItem } from "../store/cartSlice";
 
 const CartItem = ({ productData }) => {
 
-  const { id, name, image, color, price, amount, selectedColor } = productData
+  const { id, name, image, price, quantity, selectedColor } = productData
 
   // const { removeItem, setDecrease, setIncrement } = redux
 const dispatch = useDispatch()
@@ -22,18 +22,18 @@ const dispatch = useDispatch()
   if(!productData) return null
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="grid grid-cols-5 items-center">
       <div className="">
           <figure>
-            <img src={image} alt={id} />
+            <img src={image[0]?.url} alt={id} className="w-32 h-20" />
           </figure>
         <div>
           <span>{name}</span>
-          <div className="">
+          <div className="flex">
             <span>color:</span>
             <div
-              className=""
-              style={{ backgroundColor: color }}></div>
+              className="w-6 h-6 rounded-full border border-black"
+              style={{ backgroundColor: selectedColor }}></div>
           </div>
         </div>
       </div>
@@ -44,11 +44,11 @@ const dispatch = useDispatch()
       </div>
 
       {/* Quantity  */}
-      <div className="">
+      <div className="flex gap-4">
           {/* <button onClick={() => setDecrease()}> */}
             <FaMinus />
           {/* </button> */}
-          <span className="">{amount}</span>
+          <span className="">{quantity}</span>
           {/* <button onClick={() => setIncrease()}> */}
             <FaPlus />
           {/* </button> */}
@@ -56,7 +56,7 @@ const dispatch = useDispatch()
 
       {/* Subtotal */}
       <div className="">
-          {formatPrice(price * amount)}
+          {formatPrice(price * quantity)}
       </div>
 
       <div>

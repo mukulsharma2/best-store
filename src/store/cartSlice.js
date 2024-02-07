@@ -7,15 +7,20 @@ const cartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            state.cartItems.push({...action.payload, uniqueId: action.payload.id + action.payload.selectedColor,})
+            const duplicateItemArr = state.cartItems.filter(currEle=> currEle.uniqueId === action.payload.uniqueId)
+
+            if(duplicateItemArr.length === 1){
+                const restItems = state.cartItems.filter(currEle=> currEle.uniqueId !== duplicateItemArr[0].uniqueId)
+                state.cartItems = [...restItems, {...duplicateItemArr[0], quantity: (duplicateItemArr[0].quantity + action.payload.quantity)}]
+            }else{state.cartItems.push(action.payload)}
         },
         removeItem: (state, action) => {
             console.log(state.cartItems);
             state.cartItems = state.cartItems.filter(currEle=> currEle.uniqueId !== action.payload)
             console.log(state.cartItems);
         },
-        clearCart: (state, action) => {
-            // state.cartItems = state.cartItems.filter(currEle=> currEle !== action.payload)
+        clearCart: (state) => {
+            state.cartItems = []
         },
     },
 })

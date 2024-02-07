@@ -46,7 +46,7 @@ const AddToCart = ({product}) => {
       </div>
   
         <Link to="/cart" onClick={() => dispatch(addToCart({
-          ...product, selectedColor, quantity
+          ...product, selectedColor, quantity, uniqueId: (id + selectedColor),
         }))}>
           <button className="bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white">Add To Cart</button>
         </Link>
