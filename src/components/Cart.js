@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import {formatPrice} from "../helper/constants";
 // import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, getDataFromLocalStorage, setDataInLocalStorage } from '../store/cartSlice';
+import { clearCart } from '../store/cartSlice';
 
 const Cart = () => {
   // const { cart, clearCart, total_price, shipping_fee } = redux
@@ -13,14 +13,6 @@ const Cart = () => {
   // const { isAuthenticated, user } = useAuth0();
 
   const cartItems = useSelector(store => store.cart.cartItems)
-
-  useEffect(()=>{
-  dispatch(getDataFromLocalStorage())
-  },[dispatch])
-
-useEffect(()=>{
-dispatch(setDataInLocalStorage())
-},[dispatch, cartItems])
 
   if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
 
