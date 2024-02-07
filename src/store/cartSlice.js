@@ -7,11 +7,14 @@ const cartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            const duplicateItemArr = state.cartItems.filter(currEle=> currEle.uniqueId === action.payload.uniqueId)
+            const {uniqueId, quantity, stock} = action.payload
+            const duplicateItemArr = state.cartItems.filter(currEle=> currEle.uniqueId === uniqueId)
 
             if(duplicateItemArr.length === 1){
-                const restItems = state.cartItems.filter(currEle=> currEle.uniqueId !== duplicateItemArr[0].uniqueId)
-                state.cartItems = [...restItems, {...duplicateItemArr[0], quantity: (duplicateItemArr[0].quantity + action.payload.quantity)}]
+                const restItems = state.cartItems.filter(currEle=> currEle.uniqueId !== uniqueId)
+                const combinedQty = duplicateItemArr[0].quantity + quantity
+                const newQty = (combinedQty >= stock) ? stock : combinedQty
+                state.cartItems = [...restItems, {...duplicateItemArr[0], quantity: newQty}]
             }else{state.cartItems.push(action.payload)}
         },
         removeItem: (state, action) => {
