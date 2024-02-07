@@ -1,29 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import {formatPrice} from "../helper/constants";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from '../store/cartSlice';
+import { clearCart, getDataFromLocalStorage, setDataInLocalStorage } from '../store/cartSlice';
 
 const Cart = () => {
   // const { cart, clearCart, total_price, shipping_fee } = redux
   const dispatch = useDispatch()
 
-  const { isAuthenticated, user } = useAuth0();
+  // const { isAuthenticated, user } = useAuth0();
 
-  const cart = useSelector(store => store.cart.CartItems)
+  const cartItems = useSelector(store => store.cart.cartItems)
 
-  if (cart.length === 0) return <h3> No Cart in Item </h3>
+  useEffect(()=>{
+  dispatch(getDataFromLocalStorage())
+  },[dispatch])
+
+useEffect(()=>{
+dispatch(setDataInLocalStorage())
+},[dispatch, cartItems])
+
+  if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
 
   return (
-      <div className="">
-        {isAuthenticated && (
-          <div className="">
-            <img src={user.profile} alt={user.name} />
-            <h2 className="">{user.name}</h2>
-          </div>
-        )}
+      <div className="mt-20">
+         {/* {isAuthenticated && ( */}
+        {/* //   <div className="">
+        //     <img src={user.profile} alt={user.name} />
+        //     <h2 className="">{user.name}</h2>
+        //   </div>
+        // )} */}
 
         <div className="flex flex-col gap-4">
           <p>Item</p>
@@ -34,7 +42,7 @@ const Cart = () => {
         </div>
         <hr />
         <div className="">
-          {cart.map((curElem) => {
+          {cartItems && cartItems.map((curElem) => {
             return <CartItem key={curElem.id} productData={curElem} />;
           })}
         </div>
@@ -54,20 +62,20 @@ const Cart = () => {
             <div>
               <p>subtotal:</p>
               <p>
-                {formatPrice(total_price)}
+                {/* {formatPrice(total_price)} */}
               </p>
             </div>
             <div>
               <p>shipping fee:</p>
               <p>
-                {formatPrice(shipping_fee)}
+                {/* {formatPrice(shipping_fee)} */}
               </p>
             </div>
             <hr />
             <div>
               <p>order total:</p>
               <p>
-                {formatPrice(shipping_fee + total_price)}
+                {/* {formatPrice(shipping_fee + total_price)} */}
               </p>
             </div>
           </div>

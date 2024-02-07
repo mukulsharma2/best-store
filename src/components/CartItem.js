@@ -6,7 +6,7 @@ import { removeItem } from "../store/cartSlice";
 
 const CartItem = ({ productData }) => {
 
-  const { id, name, image, color, price, amount } = productData
+  const { id, name, image, color, price, amount, selectedColor } = productData
 
   // const { removeItem, setDecrease, setIncrement } = redux
 const dispatch = useDispatch()
@@ -45,13 +45,13 @@ const dispatch = useDispatch()
 
       {/* Quantity  */}
       <div className="">
-          <button onClick={() => setDecrease()}>
+          {/* <button onClick={() => setDecrease()}> */}
             <FaMinus />
-          </button>
+          {/* </button> */}
           <span className="">{amount}</span>
-          <button onClick={() => setIncrease()}>
+          {/* <button onClick={() => setIncrease()}> */}
             <FaPlus />
-          </button>
+          {/* </button> */}
       </div>
 
       {/* Subtotal */}
@@ -60,7 +60,7 @@ const dispatch = useDispatch()
       </div>
 
       <div>
-        <FaTrash className="" onClick={() => dispatch(removeItem(productData))} />
+        <FaTrash className="" onClick={() => dispatch(removeItem(id + selectedColor))} />
       </div>
     </div>
   );
