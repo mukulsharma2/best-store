@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import {formatPrice} from "../helper/constants";
@@ -7,12 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from '../store/cartSlice';
 
 const Cart = () => {
-  // const { cart, clearCart, total_price, shipping_fee } = redux
   const dispatch = useDispatch()
 
   // const { isAuthenticated, user } = useAuth0();
 
   const cartItems = useSelector(store => store.cart.cartItems)
+  const shippingFee = 50000
+
+  let totalPrice =  useMemo(() => {
+    return cartItems.reduce((acc, curr)=>{
+      let {quantity, price} = curr
+      acc = acc + quantity * price
+      return acc
+    }, 0)
+  }, [cartItems])
 
   if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
 
@@ -51,23 +59,23 @@ const Cart = () => {
         {/* order total_amount */}
         <div className="">
           <div className="">
-            <div>
+            <div className="flex justify-between">
               <p>subtotal:</p>
               <p>
-                {/* {formatPrice(total_price)} */}
+                {formatPrice(totalPrice)}
               </p>
             </div>
-            <div>
+            <div className="flex justify-between">
               <p>shipping fee:</p>
               <p>
-                {/* {formatPrice(shipping_fee)} */}
+                {formatPrice(shippingFee)}
               </p>
             </div>
             <hr />
-            <div>
+            <div className="flex justify-between">
               <p>order total:</p>
               <p>
-                {/* {formatPrice(shipping_fee + total_price)} */}
+                {formatPrice(shippingFee + totalPrice)}
               </p>
             </div>
           </div>
