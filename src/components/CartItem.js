@@ -2,22 +2,13 @@ import React from "react";
 import {formatPrice} from "../helper/constants";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../store/cartSlice";
+import { removeItem, toggleQty } from "../store/cartSlice";
 
 const CartItem = ({ productData }) => {
 
-  const { id, name, image, price, quantity, selectedColor } = productData
+  const { id, name, image, price, quantity, selectedColor, uniqueId, stock } = productData
 
-  // const { removeItem, setDecrease, setIncrement } = redux
 const dispatch = useDispatch()
-
-  // const setDecrease = () => {
-  //   amount > 1 ? setAmounts(amount - 1) : setAmounts(1);
-  // };
-
-  // const setIncrease = () => {
-  //   amount < stock ? setAmounts(amount + 1) : setAmounts(stock);
-  // };
 
   if(!productData) return null
 
@@ -45,13 +36,13 @@ const dispatch = useDispatch()
 
       {/* Quantity  */}
       <div className="flex gap-4">
-          {/* <button onClick={() => setDecrease()}> */}
+          <button onClick={() => dispatch(toggleQty({type:'decrease', stock, uniqueId}))}>
             <FaMinus />
-          {/* </button> */}
+          </button>
           <span className="">{quantity}</span>
-          {/* <button onClick={() => setIncrease()}> */}
+          <button onClick={() => dispatch(toggleQty({type:'increase', stock, uniqueId}))}>
             <FaPlus />
-          {/* </button> */}
+          </button>
       </div>
 
       {/* Subtotal */}
@@ -60,7 +51,7 @@ const dispatch = useDispatch()
       </div>
 
       <div>
-        <FaTrash className="" onClick={() => dispatch(removeItem(id + selectedColor))} />
+        <FaTrash className="" onClick={() => dispatch(removeItem(uniqueId))} />
       </div>
     </div>
   );

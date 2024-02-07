@@ -25,8 +25,22 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.cartItems = []
         },
+        toggleQty: (state, action) => {
+            const {type, stock, uniqueId} = action.payload
+
+            const filteredArr = state.cartItems.filter(currEle=> currEle.uniqueId === uniqueId)
+            const restItems = state.cartItems.filter(currEle=> currEle.uniqueId !== uniqueId)
+
+                    if(type === 'increase' && filteredArr[0].quantity < stock){
+                        state.cartItems = [...restItems, {...filteredArr[0], quantity: filteredArr[0].quantity + 1}] 
+                    }
+
+                    if(type === 'decrease' && filteredArr[0].quantity > 1){
+                        state.cartItems = [...restItems, {...filteredArr[0], quantity: filteredArr[0].quantity - 1}] 
+                    }
+        },
     },
 })
 
 export default cartSlice.reducer;
-export const {addToCart, removeItem, clearCart} = cartSlice.actions;
+export const {addToCart, removeItem, clearCart, toggleQty} = cartSlice.actions;
