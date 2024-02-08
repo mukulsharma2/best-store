@@ -6,8 +6,6 @@ const FeaturedProducts = () => {
     const [featuredData, setFeaturedData] = useState([])
     const data = useSelector((store)=> store.app.data)
     const isLoading = useSelector((store)=> store.app.isLoading)
-    console.log(data);
-    console.log(featuredData);
     
     useEffect(()=>{
         const filteredData = data.filter((curElem) => {

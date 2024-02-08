@@ -25,7 +25,6 @@ const SingleProduct = () => {
       try {
         const data = await fetch(SINGLE_PRODUCT_API + id);
         const json = await data.json();
-        console.log(json);
         dispatch(addSingleData(json));
       } catch (error) {
         console.log(error);

@@ -9,7 +9,7 @@ const ListView = ({products}) => {
       const { id, name, image, price, description } = curElem;
 
       return (
-        <div className="flex gap-5">
+        <div className="flex gap-5" key={id}>
           <figure>
             <img src={image} alt={name} className='w-80' />
           </figure>

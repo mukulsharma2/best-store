@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const Images = ({images}) => {
-  console.log(images);
   const [selectedImg, setSelectedImg] = useState(images[0])
 
   return (

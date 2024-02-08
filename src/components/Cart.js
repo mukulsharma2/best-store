@@ -2,40 +2,26 @@ import React, { useMemo } from 'react'
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import {formatPrice} from "../helper/constants";
-// import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, setCartInfo } from '../store/cartSlice';
+import { clearCart } from '../store/cartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch()
-
-  // const { isAuthenticated, user } = useAuth0();
-
   const cartItems = useSelector(store => store.cart.cartItems)
   const shippingFee = 50000
 
-  let calculatedCartInfo =  useMemo(() => {
+  let totalPrice =  useMemo(() => {
     return cartItems.reduce((acc, curr)=>{
       let {quantity, price} = curr
-      acc.totalQuantity += quantity
-      acc.totalPrice += quantity * price
+      acc += quantity * price
       return acc
-    }, {totalQuantity: 0, totalPrice: 0})
+    }, 0)
   }, [cartItems])
-  dispatch(setCartInfo(calculatedCartInfo))
-  const {totalPrice} = calculatedCartInfo
 
   if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
 
   return (
       <div className="mt-20">
-         {/* {isAuthenticated && ( */}
-        {/* //   <div className="">
-        //     <img src={user.profile} alt={user.name} />
-        //     <h2 className="">{user.name}</h2>
-        //   </div>
-        // )} */}
-
         <div className="grid grid-cols-5">
           <p>Item</p>
           <p className="">Price</p>

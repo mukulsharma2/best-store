@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
@@ -8,10 +8,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
 const isMenuOpen = useSelector((store)=> store.app.isMenuOpen);
-const cartInfo = useSelector((store)=> store.cart.cartInfo);
+const cartItems = useSelector(store => store.cart.cartItems)
 const dispatch = useDispatch();
-const {totalQuantity} = cartInfo
 const { loginWithRedirect, logout, isAuthenticated, user  } = useAuth0();
+
+let totalQuantity =  useMemo(() => {
+  return cartItems.reduce((acc, curr)=>{
+    acc += curr.quantity
+    return acc
+  }, 0)
+}, [cartItems])
 
   return (
     <div>
