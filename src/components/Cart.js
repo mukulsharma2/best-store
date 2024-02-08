@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {formatPrice} from "../helper/constants";
 // import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from '../store/cartSlice';
+import { clearCart, setCartInfo } from '../store/cartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -14,13 +14,16 @@ const Cart = () => {
   const cartItems = useSelector(store => store.cart.cartItems)
   const shippingFee = 50000
 
-  let totalPrice =  useMemo(() => {
+  let calculatedCartInfo =  useMemo(() => {
     return cartItems.reduce((acc, curr)=>{
       let {quantity, price} = curr
-      acc = acc + quantity * price
+      acc.totalQuantity += quantity
+      acc.totalPrice += quantity * price
       return acc
-    }, 0)
+    }, {totalQuantity: 0, totalPrice: 0})
   }, [cartItems])
+  dispatch(setCartInfo(calculatedCartInfo))
+  const {totalPrice} = calculatedCartInfo
 
   if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
 

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
@@ -7,15 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
 const isMenuOpen = useSelector((store)=> store.app.isMenuOpen);
-const cartItems = useSelector((store)=> store.cart.cartItems);
+const cartInfo = useSelector((store)=> store.cart.cartInfo);
 const dispatch = useDispatch();
-
-let totalQuantity = useMemo(()=>{
-  return cartItems.reduce((acc, curr)=>{
-    acc = acc + curr.quantity
-    return acc
-  }, 0)
-},[cartItems])
+const {totalQuantity} = cartInfo
 
   return (
     <div>
