@@ -36,12 +36,10 @@ const SingleProduct = () => {
   }, [dispatch, id]);
   
   const {
-    id: alias,
     name,
     company,
     price,
     description,
-    category,
     stock,
     stars,
     reviews,

@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
 const isMenuOpen = useSelector((store)=> store.app.isMenuOpen);
+const cartInfo = useSelector((store)=> store.cart.cartInfo);
 const dispatch = useDispatch();
+const {totalQuantity} = cartInfo
 
   return (
     <div>
@@ -27,7 +29,7 @@ const dispatch = useDispatch();
       <Link to={"/cart"} className="w-fit mr-8 flex items-center text-2xl relative" onClick={()=> dispatch(toggleMenu())}>
         <FiShoppingCart />
         <span className="absolute w-5 h-5 text-xs bg-gray-500 text-white rounded-3xl top-[-20%] left-[70%] grid place-items-center">
-          <span>10</span>
+          <span>{totalQuantity}</span>
         </span>
       </Link>
     </ul>

@@ -1,11 +1,90 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
+import {formatPrice} from "../helper/constants";
+// import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, setCartInfo } from '../store/cartSlice';
 
 const Cart = () => {
+  const dispatch = useDispatch()
+
+  // const { isAuthenticated, user } = useAuth0();
+
+  const cartItems = useSelector(store => store.cart.cartItems)
+  const shippingFee = 50000
+
+  let calculatedCartInfo =  useMemo(() => {
+    return cartItems.reduce((acc, curr)=>{
+      let {quantity, price} = curr
+      acc.totalQuantity += quantity
+      acc.totalPrice += quantity * price
+      return acc
+    }, {totalQuantity: 0, totalPrice: 0})
+  }, [cartItems])
+  dispatch(setCartInfo(calculatedCartInfo))
+  const {totalPrice} = calculatedCartInfo
+
+  if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
+
   return (
-    <div>
-      cart
-    </div>
-  )
+      <div className="mt-20">
+         {/* {isAuthenticated && ( */}
+        {/* //   <div className="">
+        //     <img src={user.profile} alt={user.name} />
+        //     <h2 className="">{user.name}</h2>
+        //   </div>
+        // )} */}
+
+        <div className="grid grid-cols-5">
+          <p>Item</p>
+          <p className="">Price</p>
+          <p>Quantity</p>
+          <p className="">Subtotal</p>
+          <p>Remove</p>
+        </div>
+        <hr />
+        <div className="flex flex-col gap-4">
+          {cartItems && cartItems.map((curElem) => {
+            return <CartItem key={curElem.id} productData={curElem} />;
+          })}
+        </div>
+        <hr />
+        <div className="flex justify-between">
+          <Link to="/products">
+            <button className='bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white border border-black transition-all'> continue Shopping </button>
+          </Link>
+          <button className="bg-[#ec3535] px-5 py-2 font-semibold text-xl text-white border border-black transition-all" onClick={()=> dispatch(clearCart())}>
+            clear cart
+          </button>
+        </div>
+
+        {/* order total_amount */}
+        <div className="">
+          <div className="">
+            <div className="flex justify-between">
+              <p>subtotal:</p>
+              <p>
+                {formatPrice(totalPrice)}
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <p>shipping fee:</p>
+              <p>
+                {formatPrice(shippingFee)}
+              </p>
+            </div>
+            <hr />
+            <div className="flex justify-between">
+              <p>order total:</p>
+              <p>
+                {formatPrice(shippingFee + totalPrice)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+);
 }
 
 export default Cart
