@@ -18,10 +18,10 @@ const Cart = () => {
     }, 0)
   }, [cartItems])
 
-  if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
+  if (cartItems?.length === 0) return <h3 className='mt-20 min-h-[50vh]'>Cart is empty!</h3>
 
   return (
-      <div className="mt-20">
+      <div className="mt-20 min-h-[50vh]">
         <div className="grid grid-cols-5">
           <p>Item</p>
           <p className="">Price</p>

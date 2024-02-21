@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { useSelector } from 'react-redux'
 
 function App() {
   const About = lazy(()=> import('./components/About'))
@@ -12,8 +13,10 @@ function App() {
   const Cart = lazy(()=> import('./components/Cart'))
   const ErrorPage = lazy(()=> import('./components/ErrorPage'))
 
+const isMenuOpen = useSelector((store)=> store.app.isMenuOpen);
+
   return (
-    <div className="font-sans">
+    <div className={"font-sans" + (isMenuOpen ? " h-screen sm:h-auto overflow-hidden sm:overflow-auto" : "")}>
       <BrowserRouter>
         <Header />
         <Routes>

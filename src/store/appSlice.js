@@ -10,8 +10,11 @@ const appSlice = createSlice({
         singleData: {},
     },
     reducers: {
-        toggleMenu: (state) => {
-            state.isMenuOpen = !state.isMenuOpen
+        openMenu: (state) => {
+            state.isMenuOpen = true
+        },
+        closeMenu: (state) => {
+            state.isMenuOpen = false
         },
         setLoadingTrue: (state) => {
             state.isLoading = true
@@ -35,4 +38,4 @@ const appSlice = createSlice({
 })
 
 export default appSlice.reducer;
-export const {toggleMenu, setLoadingTrue, setLoadingFalse,setSingleLoadingTrue,setSingleLoadingFalse, addData, addSingleData} = appSlice.actions;
+export const {openMenu, closeMenu, setLoadingTrue, setLoadingFalse,setSingleLoadingTrue,setSingleLoadingFalse, addData, addSingleData} = appSlice.actions;
