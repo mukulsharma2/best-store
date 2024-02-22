@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div className="h-[50vh] mt-28 mx-auto w-fit text-center">
+    <div className="min-h-[50vh] mt-28 mx-auto w-fit text-center">
       <h2 className="text-6xl font-bold">404</h2>
       <h3 className="text-4xl font-semibold my-4">Seems like you are lost</h3>
       <p className="my-6 text-lg">
