@@ -22,52 +22,50 @@ const Cart = () => {
 
   return (
       <div className="mt-20 min-h-[50vh]">
-        <div className="grid grid-cols-5">
-          <p>Item</p>
-          <p className="">Price</p>
-          <p>Quantity</p>
-          <p className="">Subtotal</p>
-          <p>Remove</p>
+        <div className="ml-1 sm:ml-3 grid grid-cols-4 sm:grid-cols-5">
+          <p className='font-bold text-lg sm:text-xl'>Item</p>
+          <p className='font-bold text-lg sm:text-xl hidden sm:block'>Price</p>
+          <p className='font-bold text-lg sm:text-xl'>Quantity</p>
+          <p className='font-bold text-lg sm:text-xl'>Subtotal</p>
+          <p className='font-bold text-lg sm:text-xl'>Remove</p>
         </div>
-        <hr />
-        <div className="flex flex-col gap-4">
+        <hr className='my-5' />
+        <div className="ml-1 sm:ml-3 flex flex-col gap-4">
           {cartItems && cartItems.map((curElem) => {
             return <CartItem key={curElem.id} productData={curElem} />;
           })}
         </div>
-        <hr />
+        <hr className='my-14' />
         <div className="flex justify-between">
           <Link to="/products">
-            <button className='bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white border border-black transition-all'> continue Shopping </button>
+            <button className='bg-[#6254F3] px-3 sm:px-5 py-1 sm:py-2 font-semibold sm:text-xl text-white border border-black transition-all hover:shadow-xl'> Continue Shopping </button>
           </Link>
-          <button className="bg-[#ec3535] px-5 py-2 font-semibold text-xl text-white border border-black transition-all" onClick={()=> dispatch(clearCart())}>
-            clear cart
+          <button className="bg-[#ec3535] px-3 sm:px-5 py-1 sm:py-2 font-semibold sm:text-xl text-white border border-black transition-all hover:shadow-xl" onClick={()=> dispatch(clearCart())}>
+            Clear Cart
           </button>
         </div>
 
         {/* order total_amount */}
-        <div className="">
-          <div className="">
+        <div className="mt-10 w-3/4 sm:w-2/5 mx-auto sm:ml-auto sm:mr-5">
             <div className="flex justify-between">
-              <p>subtotal:</p>
+              <p className='font-semibold'>Subtotal:</p>
               <p>
                 {formatPrice(totalPrice)}
               </p>
             </div>
             <div className="flex justify-between">
-              <p>shipping fee:</p>
+              <p className='font-semibold mb-3'>Shipping Fee:</p>
               <p>
                 {formatPrice(shippingFee)}
               </p>
             </div>
             <hr />
-            <div className="flex justify-between">
-              <p>order total:</p>
+            <div className="flex justify-between mt-3">
+              <p className='font-semibold'>Order Total:</p>
               <p>
                 {formatPrice(shippingFee + totalPrice)}
               </p>
             </div>
-          </div>
         </div>
       </div>
 );
