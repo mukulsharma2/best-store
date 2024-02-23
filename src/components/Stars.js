@@ -7,7 +7,7 @@ const Stars = ({stars, reviews}) => {
 
     return(
       <>
-      <div className="flex items-center gap-1">
+      <div className="mt-3 flex items-center gap-1">
         {
           arr.map((i)=>{
             return (
@@ -23,9 +23,9 @@ const Stars = ({stars, reviews}) => {
             );
           })
         }
-        <span>{stars}</span>
+        <span className='font-bold text-lg'>{stars}</span>
       </div>
-        <p>{reviews} customer reviews</p>
+        <p className='my-3'>{reviews} customer reviews</p>
         </>
     )
 };

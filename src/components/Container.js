@@ -11,7 +11,7 @@ const Container = ({name}) => {
         <p>
             This is an e-commerce website for all your needs. Here you can find all the necessary items for daily needs and also electronic items like mobile phones and laptop.
         </p>
-        <Link>
+        <Link to='/products'>
             <button className='mt-4 text-2xl px-5 py-2 rounded-2xl bg-[#6254F3] text-[#FFFFFF] transition-all hover:shadow-lg hover:bg-[#6c61db]'>SHOP NOW</button>
         </Link>
       </div>

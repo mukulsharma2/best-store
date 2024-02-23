@@ -21,7 +21,7 @@ const AddToCart = ({product}) => {
     return (
         <div className="">
           <div className='flex gap-1'>
-            Color:
+            <span className="font-semibold">Color: </span>
             {colors.map((curColor, index) => {
               return (
                 <button
@@ -35,20 +35,20 @@ const AddToCart = ({product}) => {
             })}
           </div>
   
-        <div className="flex gap-4">
+        <div className="flex gap-4 my-3">
           <button onClick={() => setDecrease()}>
-            <FaMinus />
+            <FaMinus size='1.5rem' />
           </button>
-          <div className="">{quantity}</div>
+          <div className="text-lg font-bold">{quantity}</div>
           <button onClick={() => setIncrease()}>
-            <FaPlus />
+            <FaPlus size='1.5rem' />
           </button>
       </div>
   
         <Link to="/cart" onClick={() => dispatch(addToCart({
           ...product, selectedColor, quantity, uniqueId: (id + selectedColor),
         }))}>
-          <button className="bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white">Add To Cart</button>
+          <button className="bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white transition-all hover:shadow-lg hover:bg-[#6c61db]">Add To Cart</button>
         </Link>
         </div>
     );
