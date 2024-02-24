@@ -5,18 +5,12 @@ import ProductList from './ProductList'
 
 const ProductsPage = () => {
   return (
-      <div className="mt-20 mx-20 flex justify-between">
-        <div>
+      <div className="mt-20 mr-3 md:mx-auto lg:mx-5 xl:mx-20 2xl:mx-auto md:max-w-4xl lg:max-w-full 2xl:max-w-screen-2xl flex justify-between">
           <FilterSection />
-        </div>
 
         <section className="">
-          <div className="">
             <SortSection />
-          </div>
-          <div className="">
             <ProductList />
-          </div>
         </section>
       </div>
   )

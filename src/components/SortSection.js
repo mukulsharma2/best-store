@@ -13,9 +13,8 @@ const data = useSelector((store)=> store.app.data)
     dispatch(setSortedData(data))
   }, [data, dispatch])
 
-
   return (
-    <div className='flex justify-between'>
+    <div className='flex flex-wrap justify-between w-[95%] mb-4 sm:mb-0 mx-auto'>
       {/* 1st column  */}
       <div className="">
         <button

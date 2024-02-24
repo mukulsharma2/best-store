@@ -40,7 +40,7 @@ useEffect(()=>{
 },[dispatch, data, maxPrice])
 
   return (
-    <div>
+    <div className='w-1/3 sm:w-auto sm:ml-4 lg:ml-0 2xl:ml-8'>
       <div className="">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
@@ -55,6 +55,7 @@ useEffect(()=>{
                 fullData: data,
               }))
             }}
+            className='w-full'
           />
         </form>
       </div>
@@ -181,7 +182,6 @@ useEffect(()=>{
         <button className="" onClick={()=> dispatch(clearFilters({
         fullData: data,
         maxPrice,
-        // maxPrice: maxPrice,
         }))}>
           Clear Filters
         </button>
