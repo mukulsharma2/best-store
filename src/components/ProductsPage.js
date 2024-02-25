@@ -8,7 +8,7 @@ const ProductsPage = () => {
       <div className="mt-20 mr-3 md:mx-auto lg:mx-5 xl:mx-20 2xl:mx-auto md:max-w-4xl lg:max-w-full 2xl:max-w-screen-2xl flex justify-between">
           <FilterSection />
 
-        <section className="">
+        <section className="w-4/5">
             <SortSection />
             <ProductList />
         </section>

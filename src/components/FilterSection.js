@@ -55,12 +55,12 @@ useEffect(()=>{
                 fullData: data,
               }))
             }}
-            className='w-full'
+            className='px-2 py-1 mb-3 w-full outline-none border'
           />
         </form>
       </div>
 
-       <div className="">
+       <div className="mb-3">
         <h3 className="font-semibold">Category</h3>
         <div className="flex flex-col gap-3">
           {categoryData && categoryData.map((curElem) => {
@@ -85,14 +85,14 @@ useEffect(()=>{
         </div>
       </div>
 
-       <div className="">
-        <h3 className="font-semibold">Company</h3>
+       <div className="mb-3">
+        <h3 className="font-semibold mb-2">Company</h3>
 
         <form action="#">
           <select
             name="company"
             id="company"
-            className=""
+            className="p-1 outline-none border cursor-pointer"
             onChange={(e)=>{
               dispatch(filterProducts({
                 name: e.target.name,
@@ -112,9 +112,9 @@ useEffect(()=>{
       </div>
 
       <div className="">
-        <h3>Colors</h3>
+        <h3 className="font-semibold">Colors</h3>
 
-        <div className="">
+        <div className="mb-3 flex">
           {colorsData && colorsData.map((curColor, index) => {
             if (curColor === "all") {
               return (
@@ -142,7 +142,7 @@ useEffect(()=>{
                 value={curColor}
                 name="color"
                 style={{ backgroundColor: curColor }}
-                className={'hover:opacity-100 w-6 h-6 rounded-full border border-black' + (filters.color === curColor ? " opacity-100" : " opacity-50")}
+                className={'pl-[3px] hover:opacity-100 w-6 h-6 rounded-full border border-black' + (filters.color === curColor ? " opacity-100" : " opacity-50")}
                 onClick={(e)=>{
                   dispatch(filterProducts({
                     name: e.target.name,
@@ -158,7 +158,7 @@ useEffect(()=>{
       </div>
 
       <div className="">
-        <h3>Price</h3>
+        <h3 className="font-semibold">Price</h3>
         <p>
           {formatPrice(minPrice) + ' to ' + formatPrice(filters.price)}
         </p>
@@ -175,11 +175,12 @@ useEffect(()=>{
               fullData: data,
             }))
           }}
+          className='cursor-pointer w-full'
         />
       </div>
 
       <div className="">
-        <button className="" onClick={()=> dispatch(clearFilters({
+        <button className="mt-3 bg-[#6254F3] text-white px-2 py-1 font-medium hover:shadow-xl" onClick={()=> dispatch(clearFilters({
         fullData: data,
         maxPrice,
         }))}>

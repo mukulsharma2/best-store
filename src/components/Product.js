@@ -13,7 +13,7 @@ const formatedPrice = useMemo(() => {
 }, [price])
 
   return (
-      <Link to={`/singleproduct/${id}`} className={'w-72 m-auto hover:shadow-xl hover:z-10 transition-all' + (hoverEffect? ' lg:hover:w-[19rem]' : ' w-52 md:w-72')}>
+      <Link to={`/singleproduct/${id}`} className={'w-72 m-auto hover:shadow-xl hover:z-10 transition-all' + (hoverEffect? ' lg:hover:w-[19rem]' : ' w-48 md:w-72')}>
           <div className="bg-white w-full rounded-2xl p-1 md:p-5 relative">
             <img src={image} alt={name} className='w-full rounded-2xl' />
             <span className='absolute top-8 right-8 bg-white rounded-lg uppercase text-sm px-1'>{category}</span>

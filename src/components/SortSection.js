@@ -40,15 +40,12 @@ const data = useSelector((store)=> store.app.data)
         <form action="#">
           <select
             name="sort"
-            className=""
+            className="outline-none border p-1"
             onChange={(e)=>dispatch(sortProducts(e.target.value))}
             >
             <option value="lowest">Price(lowest)</option>
-            <option value="#" disabled></option>
             <option value="highest">Price(highest)</option>
-            <option value="#" disabled></option>
             <option value="a-z">Price(a-z)</option>
-            <option value="#" disabled></option>
             <option value="z-a">Price(z-a)</option>
           </select>
         </form>
