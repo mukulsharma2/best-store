@@ -1,90 +1,79 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from "react";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import {formatPrice} from "../helper/constants";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { formatPrice } from "../helper/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, setCartInfo } from '../store/cartSlice';
+import { clearCart } from "../store/cartSlice";
 
 const Cart = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  const shippingFee = 50000;
 
-  // const { isAuthenticated, user } = useAuth0();
+  let totalPrice = useMemo(() => {
+    return cartItems.reduce((acc, curr) => {
+      let { quantity, price } = curr;
+      acc += quantity * price;
+      return acc;
+    }, 0);
+  }, [cartItems]);
 
-  const cartItems = useSelector(store => store.cart.cartItems)
-  const shippingFee = 50000
-
-  let calculatedCartInfo =  useMemo(() => {
-    return cartItems.reduce((acc, curr)=>{
-      let {quantity, price} = curr
-      acc.totalQuantity += quantity
-      acc.totalPrice += quantity * price
-      return acc
-    }, {totalQuantity: 0, totalPrice: 0})
-  }, [cartItems])
-  dispatch(setCartInfo(calculatedCartInfo))
-  const {totalPrice} = calculatedCartInfo
-
-  if (cartItems?.length === 0) return <h3 className='mt-20'>Cart is empty!</h3>
+  if (cartItems?.length === 0)
+    return <h3 className="mt-20 min-h-[50vh]">Cart is empty!</h3>;
 
   return (
-      <div className="mt-20">
-         {/* {isAuthenticated && ( */}
-        {/* //   <div className="">
-        //     <img src={user.profile} alt={user.name} />
-        //     <h2 className="">{user.name}</h2>
-        //   </div>
-        // )} */}
-
-        <div className="grid grid-cols-5">
-          <p>Item</p>
-          <p className="">Price</p>
-          <p>Quantity</p>
-          <p className="">Subtotal</p>
-          <p>Remove</p>
-        </div>
-        <hr />
-        <div className="flex flex-col gap-4">
-          {cartItems && cartItems.map((curElem) => {
+    <div className="mt-20 min-h-[50vh]">
+      {/* heading */}
+      <div className="ml-1 sm:ml-3 grid grid-cols-4 sm:grid-cols-5">
+        <p className="font-bold text-lg sm:text-xl">Item</p>
+        <p className="font-bold text-lg sm:text-xl hidden sm:block">Price</p>
+        <p className="font-bold text-lg sm:text-xl">Quantity</p>
+        <p className="font-bold text-lg sm:text-xl">Subtotal</p>
+        <p className="font-bold text-lg sm:text-xl">Remove</p>
+      </div>
+      <hr className="my-5" />
+      <div className="ml-1 sm:ml-3 flex flex-col gap-4">
+        {cartItems &&
+          cartItems.map((curElem) => {
             return <CartItem key={curElem.id} productData={curElem} />;
           })}
+      </div>
+      <hr className="my-14" />
+
+      <div className="flex justify-between">
+        <Link to="/products">
+          <button className="bg-[#6254F3] px-3 sm:px-5 py-1 sm:py-2 font-semibold sm:text-xl text-white border border-black transition-all hover:shadow-xl">
+            {" "}
+            Continue Shopping{" "}
+          </button>
+        </Link>
+
+        <button
+          className="bg-[#ec3535] px-3 sm:px-5 py-1 sm:py-2 font-semibold sm:text-xl text-white border border-black transition-all hover:shadow-xl"
+          onClick={() => dispatch(clearCart())}
+        >
+          Clear Cart
+        </button>
+      </div>
+
+      {/* order total_amount */}
+      <div className="mt-10 w-3/4 sm:w-2/5 mx-auto sm:ml-auto sm:mr-5">
+        <div className="flex justify-between">
+          <p className="font-semibold">Subtotal:</p>
+          <p>{formatPrice(totalPrice)}</p>
+        </div>
+        <div className="flex justify-between">
+          <p className="font-semibold mb-3">Shipping Fee:</p>
+          <p>{formatPrice(shippingFee)}</p>
         </div>
         <hr />
-        <div className="flex justify-between">
-          <Link to="/products">
-            <button className='bg-[#6254F3] px-5 py-2 font-semibold text-xl text-white border border-black transition-all'> continue Shopping </button>
-          </Link>
-          <button className="bg-[#ec3535] px-5 py-2 font-semibold text-xl text-white border border-black transition-all" onClick={()=> dispatch(clearCart())}>
-            clear cart
-          </button>
-        </div>
-
-        {/* order total_amount */}
-        <div className="">
-          <div className="">
-            <div className="flex justify-between">
-              <p>subtotal:</p>
-              <p>
-                {formatPrice(totalPrice)}
-              </p>
-            </div>
-            <div className="flex justify-between">
-              <p>shipping fee:</p>
-              <p>
-                {formatPrice(shippingFee)}
-              </p>
-            </div>
-            <hr />
-            <div className="flex justify-between">
-              <p>order total:</p>
-              <p>
-                {formatPrice(shippingFee + totalPrice)}
-              </p>
-            </div>
-          </div>
+        <div className="flex justify-between mt-3">
+          <p className="font-semibold">Order Total:</p>
+          <p>{formatPrice(shippingFee + totalPrice)}</p>
         </div>
       </div>
-);
-}
+    </div>
+  );
+};
 
-export default Cart
+export default Cart;

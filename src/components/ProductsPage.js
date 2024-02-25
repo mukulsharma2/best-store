@@ -1,25 +1,19 @@
-import React from 'react'
-import FilterSection from './FilterSection'
-import SortSection from './SortSection'
-import ProductList from './ProductList'
+import React from "react";
+import FilterSection from "./FilterSection";
+import SortSection from "./SortSection";
+import ProductList from "./ProductList";
 
 const ProductsPage = () => {
   return (
-      <div className="mt-20 mx-20 flex justify-between">
-        <div>
-          <FilterSection />
-        </div>
+    <div className="mt-20 mr-3 md:mx-auto lg:mx-5 xl:mx-20 2xl:mx-auto md:max-w-4xl lg:max-w-full 2xl:max-w-screen-2xl flex justify-between">
+      <FilterSection />
 
-        <section className="">
-          <div className="">
-            <SortSection />
-          </div>
-          <div className="">
-            <ProductList />
-          </div>
-        </section>
-      </div>
-  )
-}
+      <section className="w-4/5">
+        <SortSection />
+        <ProductList />
+      </section>
+    </div>
+  );
+};
 
-export default ProductsPage
+export default ProductsPage;
