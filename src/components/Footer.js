@@ -12,13 +12,11 @@ const Footer = () => {
             <h3>Talk to us today</h3>
           </div>
 
-          <div>
-            <Link to="/">
-              <button className="bg-[#6254F3] p-2 font-semibold text-xl">
-                Get Started
-              </button>
-            </Link>
-          </div>
+          <Link to="/">
+            <button className="bg-[#6254F3] p-2 font-semibold text-xl">
+              Get Started
+            </button>
+          </Link>
         </div>
         <hr className="my-7" />
       </section>
@@ -36,21 +34,33 @@ const Footer = () => {
             <h3 className="mb-3 font-bold text-lg">Follow Us</h3>
             <div className="flex flex-row sm:flex-col md:flex-row gap-4 sm:gap-0 md:gap-4 lg:gap-12 mt-2">
               <div>
-                <FaDiscord size='2.5rem' />
+                <FaDiscord size="2.5rem" />
               </div>
               <div>
-                <FaInstagram size='2.5rem' />
+                <FaInstagram size="2.5rem" />
               </div>
               <div>
-                <FaYoutube size='2.5rem' />
+                <FaYoutube size="2.5rem" />
               </div>
             </div>
           </div>
 
           <div className="sm:-ml-9">
-            <h3 className="mb-3 font-bold text-lg">Subscribe to get important updates</h3>
-              <input type="email" name="email" autoComplete="off" placeholder="YOUR E-MAIL" className="px-2 text-black outline-none" />
-              <input type="submit" value="Subscribe" className="bg-[#6254F3] px-1 font-medium" />
+            <h3 className="mb-3 font-bold text-lg">
+              Subscribe to get important updates
+            </h3>
+            <input
+              type="email"
+              name="email"
+              autoComplete="off"
+              placeholder="YOUR E-MAIL"
+              className="px-2 text-black outline-none"
+            />
+            <input
+              type="submit"
+              value="Subscribe"
+              className="bg-[#6254F3] px-1 font-medium"
+            />
           </div>
 
           <div>
