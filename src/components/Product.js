@@ -16,9 +16,9 @@ const Product = ({ data, hoverEffect }) => {
     <Link
       to={`/singleproduct/${id}`}
       className={
-        "w-72 m-auto hover:shadow-xl hover:z-10 transition-all" +
+        "m-auto hover:shadow-xl hover:z-10 transition-all" +
         // only show hover effect on home screen featured products
-        (hoverEffect ? " lg:hover:w-[19rem]" : " w-48 md:w-72")
+        (hoverEffect ? " w-72 lg:hover:w-[19rem]" : " w-60 md:w-72")
       }
     >
       <div className="bg-white w-full rounded-2xl p-1 md:p-5 relative">
