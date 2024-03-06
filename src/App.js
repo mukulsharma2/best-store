@@ -14,7 +14,7 @@ function App() {
   const Cart = lazy(() => import("./components/Cart"));
   const ErrorPage = lazy(() => import("./components/ErrorPage"));
 
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const isMenuOpen = useSelector(store => store.app.isMenuOpen);
 
   return (
     <div
@@ -28,11 +28,21 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <Footer />
+              </>
+            }
+          />
           <Route
             path="/about"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <About />
               </Suspense>
             }
@@ -40,45 +50,59 @@ function App() {
           <Route
             path="/products"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <ProductsPage />
+                <Footer />
               </Suspense>
             }
           />
           <Route
             path="/contact"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <Contact />
+                <Footer />
               </Suspense>
             }
           />
           <Route
             path="/singleproduct/:id"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <SingleProduct />
+                <Footer />
               </Suspense>
             }
           />
           <Route
             path="/cart"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <Cart />
+                <Footer />
               </Suspense>
             }
           />
           <Route
             path="*"
             element={
-              <Suspense fallback={<div className="mt-20">Loading...</div>}>
+              <Suspense
+                fallback={<div className="mt-20 h-[50vh]">Loading...</div>}
+              >
                 <ErrorPage />
+                <Footer />
               </Suspense>
             }
           />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </div>
   );
