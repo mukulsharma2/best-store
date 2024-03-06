@@ -50,8 +50,8 @@ const SortSection = () => {
         >
           <option value="lowest">Price(lowest)</option>
           <option value="highest">Price(highest)</option>
-          <option value="a-z">Price(a-z)</option>
-          <option value="z-a">Price(z-a)</option>
+          <option value="a-z">Name(a-z)</option>
+          <option value="z-a">Name(z-a)</option>
         </select>
       </form>
     </div>

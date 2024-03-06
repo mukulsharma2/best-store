@@ -20,7 +20,7 @@ const Container = ({ name }) => {
         </Link>
       </div>
 
-      <div className="bg-[#6254F3] w-64 h-40 md:w-72 md:h-48 relative mt-8 sm:mt-3 ml-12 sm:ml-0">
+      <div className="bg-[#9b95e1] w-64 h-40 md:w-72 md:h-48 relative mt-8 sm:mt-3 ml-12 sm:ml-0">
         <img
           src={shopping}
           alt="family shopping"

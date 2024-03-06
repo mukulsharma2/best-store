@@ -33,7 +33,7 @@ const Navbar = () => {
           <li>Home</li>
         </Link>
         <Link to={"/about"} onClick={() => dispatch(closeMenu())}>
-          <li>About</li>
+          <li>Infinite Scroll</li>
         </Link>
         <Link to={"/products"} onClick={() => dispatch(closeMenu())}>
           <li>Products</li>

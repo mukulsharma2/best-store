@@ -36,10 +36,10 @@ const CartItem = ({ productData }) => {
         </div>
       </div>
 
-      {/* price   */}
+      {/* price */}
       <div className="hidden sm:block">{formatPrice(price)}</div>
 
-      {/* Quantity  */}
+      {/* Quantity */}
       <div className="ml-2 flex gap-2 sm:gap-4">
         <button
           onClick={() =>
@@ -59,7 +59,7 @@ const CartItem = ({ productData }) => {
       </div>
 
       {/* Subtotal */}
-      <div className="">{formatPrice(price * quantity)}</div>
+      <div>{formatPrice(price * quantity)}</div>
 
       <div>
         <FaTrash
